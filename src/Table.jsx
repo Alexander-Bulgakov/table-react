@@ -1,10 +1,11 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
+import './Table.css';
 
 const Table = ({ onSort, currentRow }) => {
 
   return(
     <div>
-      <table>
+      <table className="table">
         <thead>
           <tr>
             <th onClick={() => onSort('name')}>Name</th>

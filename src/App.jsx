@@ -18,7 +18,10 @@ const firstRowIndex = lastRowIndex - rowsPerPage;
 const currentRow = tableData.slice(firstRowIndex, lastRowIndex);
 
 const handleBlur = (e) => {
-  setRowsPerPage(e.target.value);
+  const value = e.target.value 
+  if (value > 0) {
+    setRowsPerPage(value);
+  }
 }
 
 const onSort = (sortCol) => {
@@ -31,11 +34,17 @@ const onSort = (sortCol) => {
   setTableData(dataCopy);
 }
 
+const handleChange = (e) => {
+  console.log(e.target.value);
+}
+
   return(
     <div className="container">
-      <h1>Hello world</h1>
-      <header>
-        <input type="number" onBlur={handleBlur}/>
+      <header className="header">
+        <label>Показать: <input type="number" onBlur={handleBlur}/></label>
+        {/* <button>Поиск</button> */}
+        <label>Поиск: <input type="text" onChange={handleChange}/></label>
+
       </header>
       <Table 
         onSort={onSort}
