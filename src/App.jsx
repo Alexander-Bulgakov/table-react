@@ -1,17 +1,39 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
+import data from './data/generated.json';
 import Table from './Table';
+import Pagination from './components/Pagination';
 import './App.css';
 
 const App = () => {
 
-const [paginationStep, setPaginationStep] = useState(20);
+const [tableData, setTableData] = useState(data);
+const [rowsPerPage, setRowsPerPage] = useState(20);
+const [currentPage, setCurrentPage] = useState(1);
+const [sortOrder, setSortOrder] = useState(true);
+
+const paginate = pageNumber => setCurrentPage(pageNumber);
+
+const lastRowIndex = currentPage * rowsPerPage;
+const firstRowIndex = lastRowIndex - rowsPerPage;
+const currentRow = tableData.slice(firstRowIndex, lastRowIndex);
 
 const handleBlur = (e) => {
-  setPaginationStep(e.target.value);
+  setRowsPerPage(e.target.value);
 }
 
-const onSort = (sortingCol) => {
-  console.log(sortingCol);
+const compare = (a, b) => {
+  if (sortOrder) {
+    return a > b ? 1 : -1;
+  } else {
+    return a > b ? -1 : 1;
+  }
+}
+
+const onSort = (sortCol) => {
+  const dataCopy = data.slice();
+  dataCopy.sort((a, b) => compare(a[sortCol], b[sortCol]));
+  setSortOrder(!sortOrder)
+  setTableData(dataCopy);
 }
 
   return(
@@ -21,9 +43,13 @@ const onSort = (sortingCol) => {
         <input type="number" onBlur={handleBlur}/>
       </header>
       <Table 
-        paginationStep={paginationStep}
         onSort={onSort}
+        currentRow={currentRow}
         />
+      <Pagination 
+        rowsPerPage={rowsPerPage} 
+        totalRows={data.length}
+        paginate={paginate} />
     </div>
   )  
 }

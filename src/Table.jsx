@@ -1,21 +1,6 @@
 import React, {useState, useEffect} from 'react';
-import data from './data/generated.json';
-import Pagination from './components/Pagination';
 
-const Table = ({ paginationStep, onSort }) => {
-  
-  const [currentPage, setCurrentPage] = useState(1);
-  const [rowsPerPage, setRowsPerPage] = useState();
-
-  useEffect(() => {
-    setRowsPerPage(paginationStep)
-  })
-
-  const lastRowIndex = currentPage * rowsPerPage;
-  const firstRowIndex = lastRowIndex - rowsPerPage;
-  const currentRow = data.slice(firstRowIndex, lastRowIndex);
-
-  const paginate = pageNumber => setCurrentPage(pageNumber);
+const Table = ({ onSort, currentRow }) => {
 
   return(
     <div>
@@ -39,10 +24,6 @@ const Table = ({ paginationStep, onSort }) => {
           ))}
         </tbody>
       </table>
-      <Pagination 
-        rowsPerPage={rowsPerPage} 
-        totalRows={data.length}
-        paginate={paginate} />
     </div>
   )
 }
