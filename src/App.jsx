@@ -21,17 +21,12 @@ const handleBlur = (e) => {
   setRowsPerPage(e.target.value);
 }
 
-const compare = (a, b) => {
-  if (sortOrder) {
-    return a > b ? 1 : -1;
-  } else {
-    return a > b ? -1 : 1;
-  }
-}
-
 const onSort = (sortCol) => {
   const dataCopy = data.slice();
-  dataCopy.sort((a, b) => compare(a[sortCol], b[sortCol]));
+  dataCopy.sort((a, b) => {
+    const sortValue = sortOrder ? 1 : -1;
+    return sortValue * (a[sortCol] > b[sortCol] ? 1 : -1);
+  });
   setSortOrder(!sortOrder)
   setTableData(dataCopy);
 }
