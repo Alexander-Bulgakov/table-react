@@ -3,14 +3,13 @@ import data from './data/generated.json';
 import Pagination from './components/Pagination';
 
 const Table = ({ paginationStep, onSort }) => {
-  const [rows, setRows] = useState([]);
+  
   const [currentPage, setCurrentPage] = useState(1);
   const [rowsPerPage, setRowsPerPage] = useState();
 
-    useEffect(() => {
-      setRowsPerPage(paginationStep)
-    })
-  // const totalRows = data.length;
+  useEffect(() => {
+    setRowsPerPage(paginationStep)
+  })
 
   const lastRowIndex = currentPage * rowsPerPage;
   const firstRowIndex = lastRowIndex - rowsPerPage;
@@ -29,30 +28,22 @@ const Table = ({ paginationStep, onSort }) => {
             <th onClick={() =>onSort('address')}>Address</th>
           </tr>
         </thead>
-        <TableBody currentRow={currentRow} />
+        <tbody>
+          {currentRow.map(row => (
+            <tr key={row.guid}>
+              <td>{row.name}</td>
+              <td>{row.phone}</td>
+              <td>{row.email}</td>
+              <td>{row.address}</td>
+            </tr>
+          ))}
+        </tbody>
       </table>
       <Pagination 
         rowsPerPage={rowsPerPage} 
         totalRows={data.length}
         paginate={paginate} />
     </div>
-  )
-}
-
-const TableBody = ({ currentRow }) => {
-  // const rowsArr = data.slice(0, rowsPerPage);
-  // console.log(rowsArr);
-  return(
-    <tbody>
-      {currentRow.map(row => (
-        <tr key={row.guid}>
-          <td>{row.name}</td>
-          <td>{row.phone}</td>
-          <td>{row.email}</td>
-          <td>{row.address}</td>
-        </tr>
-      ))}
-    </tbody>
   )
 }
 
