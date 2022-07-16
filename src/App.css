@@ -1,10 +1,23 @@
 .container {
-  max-width: 1170px;
+  max-width: 1200px;
   margin: 0 auto;
+  padding: 0 20px;
 }
 
-.header {
-  padding: 1em 2em;
+.header-container {
+  padding: 1em 0em;
   display: flex;
   justify-content: space-between;
+}
+
+.input {
+  height: 2em;
+}
+
+.header-container__number {
+  flex-basis: 25%;
+}
+
+.header-container__search {
+  flex-basis: 70%;
 }

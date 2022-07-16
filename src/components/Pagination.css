@@ -1,3 +1,6 @@
+.pagination-container {
+  padding: 1em 0;
+}
 .page-item {
   display: inline-block;
   border: 1px solid gray;
@@ -15,4 +18,5 @@
 
 .page-link {
   text-decoration: none;
+  color: gray;
 }

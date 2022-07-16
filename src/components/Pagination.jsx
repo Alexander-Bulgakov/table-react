@@ -10,7 +10,7 @@ const Pagination = ({ rowsPerPage, totalRows, paginate }) => {
   }
 
   return(
-    <div>
+    <div className="pagination-container">
       <ul className="pagination">
         {
           pageNumbers.map(number => (

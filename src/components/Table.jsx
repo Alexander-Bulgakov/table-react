@@ -1,21 +1,21 @@
 import React from 'react';
 import './Table.css';
 
-const Table = ({ onSort, currentRow }) => {
+const Table = ({ handleSort, currentData }) => {
 
   return(
     <div>
       <table className="table">
-        <thead>
+        <thead className="table__head">
           <tr>
-            <th onClick={() => onSort('name')}>Name</th>
-            <th onClick={() =>onSort('phone')}>Phone</th>
-            <th onClick={() =>onSort('email')}>Email</th>
-            <th onClick={() =>onSort('address')}>Address</th>
+            <th onClick={() => handleSort('name')}>Name</th>
+            <th onClick={() => handleSort('phone')}>Phone</th>
+            <th onClick={() => handleSort('email')}>Email</th>
+            <th onClick={() => handleSort('address')}>Address</th>
           </tr>
         </thead>
-        <tbody>
-          {currentRow.map(row => (
+        <tbody className="table__body">
+          {currentData.map(row => (
             <tr key={row.guid}>
               <td>{row.name}</td>
               <td>{row.phone}</td>

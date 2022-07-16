@@ -1,0 +1,30 @@
+.table {
+  width: 100%;
+  table-layout: fixed;
+  text-align: center;
+  border: 2px solid gray;
+  border-collapse: separate;
+}
+
+.table__head {
+  cursor: pointer;
+  letter-spacing: 2px;
+  background-color: rgba(23, 137, 202, 0.295);
+}
+
+.table__body tr{
+  background-color: rgba(176, 214, 245, 0.719);
+}
+
+.table__body tr:nth-child(odd) {
+  background-color: #92b4fd3b;
+}
+
+th {
+  font-size: 1.2em;
+  padding: 10px 0px;
+}
+
+td {
+  padding: 5px 0px;
+}
